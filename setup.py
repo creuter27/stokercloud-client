@@ -1,4 +1,4 @@
-import setuptools
+erimport setuptools
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
@@ -6,12 +6,12 @@ with open("README.md", "r", encoding="utf-8") as fh:
 setuptools.setup(
     name="stokercloud-client",
     version="0.0.10",
-    author="vurrut",
-    author_email="calvoredondo@gmail.com",
+    author="creuter27",
+    author_email="creuter25@gmail.com",
     description="Python stokercloud client",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/vurrut/stokercloud-client",
+    url="https://github.com/creuter25/stokercloud-client",
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
