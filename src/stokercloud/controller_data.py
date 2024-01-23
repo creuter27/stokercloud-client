@@ -17,6 +17,8 @@ class Unit(Enum):
     DEGREE = 'deg'
     KILO_GRAM = 'kg'
     GRAM = 'g'
+    CM = 'cm'
+    MPS = 'm/s'
 
 
 class State(Enum):
@@ -89,8 +91,40 @@ class ControllerData:
         return Value(self.get_sub_item('frontdata', '-wantedboilertemp')['value'], Unit.DEGREE)
 
     @property
+    def boiler_return_temperature(self):
+        return Value(self.get_sub_item('boilerdata', '17')['value'], Unit.DEGREE)
+
+    @property
+    def exhaust_temmperature(self):
+        return Value(self.get_sub_item('boilerdata', '3')['value'], Unit.DEGREE)
+
+    @property
+    def o2_percent(self):
+        return Value(self.get_sub_item('boilerdata', '12')['value'], Unit.PERCENT)
+
+    @property
+    def time_online_percent_percent(self):
+        return Value(self.get_sub_item('boilerdata', '9')['value'], Unit.PERCENT)
+
+    @property
     def boiler_kwh(self):
         return Value(self.get_sub_item('boilerdata', '5')['value'], Unit.KWH)
+
+    @property
+    def outside_temp(self):
+        return Value(self.get_sub_item('weatherdata', '1')['value'], Unit.DEGREE)
+
+    @property
+    def wind_speed(self):
+        return Value(self.get_sub_item('weatherdata', '2')['value'], Unit.MPS)
+
+    @property
+    def wind_direction(self):
+        return Value(self.get_sub_item('weatherdata', '3')['value'])
+
+    @property
+    def humidity(self):
+        return Value(self.get_sub_item('weatherdata', '9')['value'], Unit.PERCENT)
 
     @property
     def state(self):
@@ -113,16 +147,44 @@ class ControllerData:
         return Value(self.get_sub_item('hopperdata', '3')['value'], Unit.KILO_GRAM)
 
     @property
-    def hopper_distance(self):
-        return Value(self.data['miscdata']['hopperdistance'], Unit.PERCENT)
-    
-    @property
     def output_percentage(self):
         return Value(self.data['miscdata']['outputpct'], Unit.PERCENT)
 
     @property
     def boiler_photosensor(self):
         return Value(self.get_sub_item('boilerdata', '6')['value'], Unit.PERCENT)
+
+    @property
+    def hopper_capacity(self):
+        return Value(self.data['miscdata'].get('hopperdistance'), Unit.CM)
+
+    @property
+    def hopper_content(self):
+        return Value(self.data['frontdata'].get('hoppercontent'), Unit.KILO_GRAM)
+
+    @property
+    def hopper_max_distance(self):
+        return Value(self.data['miscdata'].get('hopper.distance_max'), Unit.CM)   
+
+    @property
+    def auger_moved_mass(self):
+        return Value(self.get_sub_item('hopperdata', '2')['value'], Unit.GRAM)
+
+    @property
+    def consumption_total(self):
+        return Value(self.get_sub_item('hopperdata', '4')['value'], Unit.KILO_GRAM)
+    
+    @property
+    def power_10_percent(self):
+        return Value(self.get_sub_item('hopperdata', '7')['value'], Unit.KWH)
+    
+    @property
+    def power_100_percent(self):
+        return Value(self.get_sub_item('hopperdata', '8')['value'], Unit.KWH)
+    
+    @property
+    def consumption_day(self):
+        return Value(self.get_sub_item('hopperdata', '3')['value'], Unit.KILO_GRAM)
     
     @property
     def dhw_on(self):
@@ -133,19 +195,19 @@ class ControllerData:
         return Value(self.data['leftoutput']['output-2']['val'], Unit(self.data['leftoutput']['output-2']['unit']))
 
     @property
-    def output_3(self):
+    def weathervalve(self):
         return Value(self.data['leftoutput']['output-3']['val'], Unit(self.data['leftoutput']['output-3']['unit']))
 
     @property
-    def output_4(self):
+    def weatherpump(self):
         return Value(self.data['leftoutput']['output-4']['val'], Unit(self.data['leftoutput']['output-4']['unit']))
 
     @property
-    def output_5(self):
+    def exhaustfan(self):
         return Value(self.data['leftoutput']['output-5']['val'], Unit(self.data['leftoutput']['output-5']['unit']))
 
     @property
-    def output_6(self):
+    def ashauger(self):
         return Value(self.data['leftoutput']['output-6']['val'], Unit(self.data['leftoutput']['output-6']['unit']))
 
     @property
@@ -153,9 +215,9 @@ class ControllerData:
         return Value(self.data['leftoutput']['output-7']['val'], Unit(self.data['leftoutput']['output-7']['unit']))
 
     @property
-    def output_8(self):
+    def weathervalve2(self):
         return Value(self.data['leftoutput']['output-8']['val'], Unit(self.data['leftoutput']['output-8']['unit']))
 
     @property
-    def output_9(self):
+    def weatherpump2(self):
         return Value(self.data['leftoutput']['output-9']['val'], Unit(self.data['leftoutput']['output-9']['unit']))
