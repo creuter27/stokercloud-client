@@ -103,7 +103,7 @@ class ControllerData:
         return Value(self.get_sub_item('boilerdata', '12')['value'], Unit.PERCENT)
 
     @property
-    def time_online_percent_percent(self):
+    def time_online_percent(self):
         return Value(self.get_sub_item('boilerdata', '9')['value'], Unit.PERCENT)
 
     @property
