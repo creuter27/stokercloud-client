@@ -107,7 +107,7 @@ class ControllerData:
         return Value(self.get_sub_item('boilerdata', '9')['value'], Unit.PERCENT)
 
     @property
-    def boiler_kwh(self):
+    def boiler_power(self):
         return Value(self.get_sub_item('boilerdata', '5')['value'], Unit.KWH)
 
     @property
@@ -167,7 +167,7 @@ class ControllerData:
         return Value(self.data['miscdata'].get('hopper.distance_max'), Unit.CM)   
 
     @property
-    def auger_moved_mass(self):
+    def auger_mass_per_load(self):
         return Value(self.get_sub_item('hopperdata', '2')['value'], Unit.GRAM)
 
     @property
