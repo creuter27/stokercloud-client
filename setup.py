@@ -1,11 +1,11 @@
-erimport setuptools
+import setuptools
 
 with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setuptools.setup(
     name="stokercloud-client",
-    version="0.0.10",
+    version="0.0.30",
     author="creuter27",
     author_email="creuter25@gmail.com",
     description="Python stokercloud client",
